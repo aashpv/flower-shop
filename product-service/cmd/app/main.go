@@ -34,8 +34,8 @@ func main() {
 	router.Use(middleware.Logger)
 	router.Use(middleware.Recoverer)
 
-	fs := http.FileServer(http.Dir("product-service/web/static/js"))
-	router.Handle("/js/*", http.StripPrefix("/js", fs))
+	fs := http.FileServer(http.Dir("product-service/web/static/jss"))
+	router.Handle("/jss/*", http.StripPrefix("/jss", fs))
 
 	router.Group(func(r chi.Router) {
 		r.Use(func(next http.Handler) http.Handler {

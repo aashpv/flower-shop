@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sendAuthenticatedRequest('/create');
     });
 
-    fetch('/products/')
+    fetch('/products')
         .then(response => response.json())
         .then(data => {
             const productsDiv = document.getElementById('products');
