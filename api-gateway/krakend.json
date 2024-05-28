@@ -1,0 +1,208 @@
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 3,
+  "name": "KrakenD - API Gateway",
+  "timeout": "30000ms",
+  "cache_ttl": "300s",
+  "output_encoding": "no-op",
+  "port": 8080,
+  "endpoints": [
+    {
+      "endpoint": "/js/{path}",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/js/{path}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "host": ["localhost:8082"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/jss/{path}",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/jss/{path}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "host": ["localhost:8081"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/login",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/login",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "POST",
+          "host": ["localhost:8081"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/login",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/login",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "host": ["localhost:8081"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/signup",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/signup",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "host": ["localhost:8081"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/signup",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/signup",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "POST",
+          "host": ["localhost:8081"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/create",
+      "input_headers": ["Authorization"],
+      "method": "GET",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/create",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "host": ["localhost:8082"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/create",
+      "input_headers": ["Authorization"],
+      "method": "POST",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/create",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "POST",
+          "host": ["localhost:8082"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/product/{id}",
+      "input_headers": ["Authorization"],
+      "method": "GET",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/product/{id}",
+          "encoding": "no-op",
+          "sd": "static",
+          "host": ["localhost:8082"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/product/{id}/page",
+      "input_headers": ["Authorization"],
+      "method": "GET",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/product/{id}/page",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "host": ["localhost:8082"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/product/{id}",
+      "input_headers": ["Authorization"],
+      "method": "DELETE",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/product/{id}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "DELETE",
+          "host": ["localhost:8082"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/products",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/products",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "host": ["localhost:8082"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "host": ["localhost:8082"],
+          "disable_host_sanitize": false
+        }
+      ]
+    }
+  ]
+}
