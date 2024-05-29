@@ -37,3 +37,21 @@ func GetUID(tokenString string, config config.JwtConfig) string {
 	uid := claims["uid"].(float64)
 	return strconv.Itoa(int(uid))
 }
+
+func GetRole(tokenString string, config config.JwtConfig) string {
+	secretKey := []byte(config.SecretKey)
+	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		return secretKey, nil
+	})
+	if err != nil {
+		return ""
+	}
+
+	if !token.Valid {
+		return ""
+	}
+
+	claims := token.Claims.(jwt.MapClaims)
+	role := claims["role"].(string)
+	return role
+}

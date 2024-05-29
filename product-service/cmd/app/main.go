@@ -42,13 +42,18 @@ func main() {
 			return mw.AuthMiddleware(next, cfg.Jwt)
 		})
 
-		r.Get("/create", create.CreatePage)
-		r.Post("/create", create.New(log, storage, cfg.Jwt))
-
 		r.Get("/product/{id}/page", get.ProductPage)
 		r.Get("/product/{id}", get.New(log, storage))
 
-		r.Delete("/product/{id}", del.New(log, storage, cfg.Jwt))
+		r.Group(func(r chi.Router) {
+			r.Use(func(next http.Handler) http.Handler {
+				return mw.AdminMiddleware(next, cfg.Jwt)
+			})
+
+			r.Get("/create", create.CreatePage)
+			r.Post("/create", create.New(log, storage, cfg.Jwt))
+			r.Delete("/product/{id}", del.New(log, storage, cfg.Jwt))
+		})
 	})
 
 	router.Get("/", list.ProductsPage)
