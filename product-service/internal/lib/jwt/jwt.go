@@ -21,7 +21,7 @@ func Verify(tokenString string, config config.JwtConfig) bool {
 	return true
 }
 
-func GetData(tokenString string, config config.JwtConfig) string {
+func GetUID(tokenString string, config config.JwtConfig) string {
 	secretKey := []byte(config.SecretKey)
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		return secretKey, nil

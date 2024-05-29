@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('#create');
 
     const token = localStorage.getItem("Bearer")
-    alert(token)
 
     form.addEventListener('submit', (event) => {
         event.preventDefault();

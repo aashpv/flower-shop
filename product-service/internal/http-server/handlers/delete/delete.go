@@ -56,7 +56,7 @@ func New(log *slog.Logger, hrs handlers.Handlers, cfg config.JwtConfig) http.Han
 
 		authHeader := r.Header.Get("Authorization")
 		tokenString := strings.Replace(authHeader, "Bearer ", "", 1)
-		uid := jwt.GetData(tokenString, cfg)
+		uid := jwt.GetUID(tokenString, cfg)
 
 		date := time.Now().Format("2006-01-02 15:04:05")
 
