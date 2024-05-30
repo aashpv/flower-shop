@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         } else {
                             // В случае ошибки обрабатываем ее
                             console.error('Ошибка при отправке запроса:', response.statusText);
+                            alert("Не имеешь права!")
                         }
                     })
                     .catch(error => {
