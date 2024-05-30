@@ -2,8 +2,10 @@ package main
 
 import (
 	"flower-shop/user-service/internal/config"
+	del "flower-shop/user-service/internal/http-server/handlers/delete"
 	"flower-shop/user-service/internal/http-server/handlers/login"
 	"flower-shop/user-service/internal/http-server/handlers/signup"
+	mw "flower-shop/user-service/internal/http-server/middleware"
 	"flower-shop/user-service/internal/storage/postgres"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -33,6 +35,15 @@ func main() {
 
 	fs := http.FileServer(http.Dir("user-service/web/static/jss"))
 	router.Handle("/jss/*", http.StripPrefix("/jss", fs))
+
+	router.Group(func(r chi.Router) {
+		r.Use(func(next http.Handler) http.Handler {
+			return mw.AuthMiddleware(next, cfg.Jwt)
+		})
+
+		r.Get("/delete", del.DeletePage)
+		r.Post("/delete", del.New(log, storage, cfg.Jwt))
+	})
 
 	router.Get("/login", login.LoginPage)
 	router.Post("/login", login.New(log, storage, cfg.Jwt))

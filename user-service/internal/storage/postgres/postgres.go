@@ -69,10 +69,10 @@ func (db *Database) CheckUser(email string) (int, string, string, error) {
 }
 
 // dont use
-func (db *Database) DeleteUser(id int) error {
+func (db *Database) DeleteUser(email string) error {
 	const op = "storage.postgres.DeleteUser"
 
-	res, err := db.db.Exec("DELETE FROM users WHERE id = $1", id)
+	res, err := db.db.Exec("DELETE FROM users WHERE email = $1", email)
 	if err != nil {
 		return fmt.Errorf("%s: execute err: %w", op, err)
 	}
